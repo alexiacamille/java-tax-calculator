@@ -1,0 +1,35 @@
+package Entidades;
+
+public abstract class Contribuinte {
+	private String Nome;
+	public Double rendimentoAnual;
+
+	public Contribuinte(String nome, Double rendimentoAnual) {
+		super();
+		Nome = nome;
+		this.rendimentoAnual = rendimentoAnual;
+	}
+
+	public String getNome() {
+		return Nome;
+	}
+
+	public void setNome(String nome) {
+		Nome = nome;
+	}
+
+	public Double getRendimentoAnual() {
+		return rendimentoAnual;
+	}
+
+	public void setRendimentoAnual(Double rendimentoAnual) {
+		this.rendimentoAnual = rendimentoAnual;
+	}
+
+	public abstract Double imposto();
+
+	@Override
+	public String toString() {
+		return Nome + ": R$ " + imposto();
+	}
+}
