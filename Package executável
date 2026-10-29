@@ -1,0 +1,52 @@
+package Executavel;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import Entidades.Contribuinte;
+import Entidades.Fisico;
+import Entidades.Juridico;
+public class Aplicacao {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		String nome;
+		double rendimentoAnual, despesaSaude;
+		int numeroEmpregados, n, i;
+		char tipo;
+	List<Contribuinte>fisicojuridico = new ArrayList<>();
+	System.out.print("Digite o numero de contribuintes: ");
+	n = sc.nextInt();
+	for (i = 1; i <= n; i++){
+		System.out.println("Dados do contribuinte #"+ i +":");
+		System.out.print("Pessoa física ou jurídica (f/j)?");
+		tipo = sc.next().charAt(0);
+		sc.nextLine();
+		System.out.print("Nome:");
+		nome = sc.nextLine();
+		System.out.print("Renda anual:");
+		rendimentoAnual = sc.nextDouble();
+		if (tipo == 'f') {
+			System.out.print("Despesas com saude: ");
+			despesaSaude = sc.nextDouble();
+			fisicojuridico.add(new Fisico(nome, rendimentoAnual, despesaSaude));
+		} else if (tipo == 'j') {
+			System.out.print("Número de empregados: ");
+			numeroEmpregados = sc.nextInt();
+			fisicojuridico.add(new Juridico(nome, rendimentoAnual, numeroEmpregados));
+		}
+	}
+	System.out.print("IMPOSTOS PAGOS: ");
+	double total = 0;
+	for (Contribuinte im : fisicojuridico) {
+		total += im.imposto();
+		System.out.println(im);
+	}
+	System.out.println("IMPOSTOS TOTAIS: R$" + total);
+	sc.close();
+
+	}
+
+}
